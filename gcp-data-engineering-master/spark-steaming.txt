@@ -1,0 +1,31 @@
+1. Create 2 clusters
+
+	1.1 cluster#1 need Jupyter, zookeeper, Kafka, image 1.10
+	1.2 cluster#2 simple cluster
+
+2. Go to master node of cluster#1 
+
+gcloud beta compute ssh --zone "us-central1-c" "saprk-etl-stream-m"  --project "bigdata-etl-332614"
+
+
+3. Go to your local python file and dependency txt and copy it to the master node
+(base) amy_a@x86_64-apple-darwin13 data-generator % gcloud compute scp ecom-visitor-logs.py amy_a@saprk-etl-stream-m:~/kafka-producer --zone us-central1-c
+   
+
+gcloud compute scp requirements.txt  amy_a@saprk-etl-stream-m:~/kafka-producer --zone us-central1-c
+
+3M. Install python in master node if not have: sudo apt-get install python-pip
+
+4M. Go to the master node, install py packages in requirements.txt
+amy_a@saprk-etl-stream-m:~/kafka-producer$ sudo pip install -r requirements.txt
+
+
+5M. Define cluster name
+amy_a@saprk-etl-stream-m:~/kafka-producer$ CLUSTER_NAME=$(/usr/share/google/get_metadata_value attributes/dataproc-cluster-name)
+
+6M: sun python script to push message to topic
+amy_a@saprk-etl-stream-m:~/kafka-producer$ sudo python ecom-visitor-logs.py 
+
+7M:check if the message is streaming
+/usr/lib/kafka/bin/kafka-console-consumer.sh --bootstrap-server ${CLUSTER_NAME}-w-1:9092 --topic user_browsing_logs
+

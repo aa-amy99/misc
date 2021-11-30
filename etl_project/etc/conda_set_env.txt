@@ -1,0 +1,37 @@
+## Package Plan ##
+
+  environment location: /Users/amy_a/opt/anaconda3/envs/myenv
+
+1. Install
+base) amy_a@x86_64-apple-darwin13 ~ % conda create --name myenv
+
+2. Or version
+conda create -n myenv python=3.6
+
+3. Install package
+
+conda create -n myenv python
+conda install -n myenv scipy
+conda install -n myenv scipy=0.15.0 (specify version)
+
+Using pip in an environment
+
+conda install -n myenv pip
+conda activate myenv
+pip <pip_subcommand>
+
+4.check your env and packages
+conda env list
+conda list -n myenv
+Pip freeze
+
+5. Go to your env ************************ACTIVATE******************
+conda activate myenv
+(base) amy_a@x86_64-apple-darwin13 ~ % conda activate myenv  
+(myenv) amy_a@Amys-MacBook-Pro ~ % 
+
+6. Install Google cloud on my env
+pip install numpy mysql.connector google-cloud pyarrow
+
+7. ************************DEACTIVATE******************
+conda deactivate

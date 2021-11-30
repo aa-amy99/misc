@@ -1,0 +1,30 @@
+Terminal 1
+airflow webserver  >> UI on localhost 8080
+
+Terminal 2
+airflow scheduler 
+
+
+Terminal 3
+Check dags 
+
+1. List of all dags (data pipeline)
+(sandbox) airflow@airflowvm:~$ airflow dags list
+Show name of dads and python file with path
+
+2. Select dags to list all tasks
+(sandbox) airflow@airflowvm:~$ airflow tasks list example_xcom_args
+
+example_xcom                            | /home/airflow/sandbox/lib/python3.8/site-packages/airflow/example_dag | airflow | True  
+                                        | s/example_xcom.py                                                     |         |       
+example_xcom_args                       | /home/airflow/sandbox/lib/python3.8/site-packages/airflow/example_dag | airflow | True  
+                                        | s/example_xcomargs.py                                                 |         |       
+ 
+generate_value
+print_value
+
+3. Execute dag
+(sandbox) airflow@airflowvm:~$ airflow dags trigger -e 2020-01-01  example_xcom_args
+
+
+

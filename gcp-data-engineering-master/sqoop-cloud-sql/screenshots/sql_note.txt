@@ -1,0 +1,47 @@
+After create DB and table on GCP
+
+1. Terminal 
+(base) amy_a@x86_64-apple-darwin13 ~ % gcloud sql connect mysql-etl --user root
+
+
+If error (install mysql and set path 
+
+$ echo $SHELL
+/usr/zsh
+
+$ cd $HOME
+$ vi .zshrc
+
+export PATH=${PATH}:/usr/local/mysql/bin
+
+Close and open terminal again 
+
+
+IP: 38.131.238.153
+https://cloud.google.com/sql/docs/mysql/connect-admin-ip#install-mysql-client
+
+
+
+2. mysql> show databases;
+3. mysql> use airports;
+4. mysql> show tables;
+5. mysql> select count(*) from flights;
+mysql> exit
+
+6.0 create new cluster >> bash create_dataproc_cluster.sh
+
+6. Go to cluster in Dataproc
+Connect master node to cloud terminal
+
+gcloud beta compute ssh --zone "us-central1-a" "ephemeral-spark-cluster-20211120-m"  --project "bigdata-etl-332614"
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+amy_a@ephemeral-spark-cluster-20211120-m:~$ ls -ltr /usr/share/
+
+Check my-sql connector.jar path
+amy_a@ephemeral-spark-cluster-20211120-m:~$ ls /usr/share/java
+
+7. Go to put java and  my-sql connector.jar path in scoop-db-eval.sh
+
+7.1 run sqoop-db-eval.sh to do map reduce job
